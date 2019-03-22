@@ -6,9 +6,9 @@
  
 let sa = new SheetsApi();
 //!!set key!!-- remove this in final product (at least remove keys in pull requests)	
-var sheetID = "1rHtqoojacLBP04ORXCqbaoUhR_NosD2yTM96VY8IfZs";
-var apiKey = "AIzaSyDlixYVvfBwTtRzQGVLiaXmpsAK-jCQeIo";
-var clientID = "528562284003-s86pk6cog2gd4nkbn3ldlvjqkkldqg9c.apps.googleusercontent.com";
+var sheetID = "";
+var apiKey = "";
+var clientID = "";
 sa.setKeys(sheetID, apiKey, clientID);
 //!!set key!!
 sa.handleClientLoad();
@@ -23,6 +23,44 @@ function updateSignInStatus(isSignedIn) {
 
 //variable for id representing student to be submitted to next page
 var submitID; 
+ 
+ function loadButtonListeners()
+ //loads event listeners and their functionality onto page buttons
+ {
+	 //these are helpers to call js functions in single_search.html
+	document.getElementById("viewStudentButton").addEventListener("click", function()
+	{
+		submitStudent("view_student.html");
+	});
+	
+	document.getElementById("editStudentButton").addEventListener("click", function() 
+	{
+		submitStudent("edit_student.html");
+	});
+	
+	document.getElementById("viewInteractionButton").addEventListener("click", function()
+	{
+		//select interaction page
+		//submitStudent("");
+	});
+	
+	document.getElementById("editInteractionButton").addEventListener("click", function() 
+	{
+		//edit interaction page
+		//submitStudent("");
+	});
+	
+	document.getElementById("addInteractionButton").addEventListener("click", function() 
+	{
+		//edit interaction page
+		//submitStudent("");
+	});
+	
+	document.getElementById("searchButton").addEventListener("click", function() 
+	{
+		searchStudents();
+	});
+ }
   
  function showFunctionButton(code)
  /*shows the button for the function requested from main menu
@@ -57,59 +95,10 @@ var submitID;
 	 }
  } 
  
- function loadButtonListeners()
- //loads event listeners and their functionality onto page buttons
- {
-	 //these are helpers to call js functions in single_search.html
-	document.getElementById("viewStudentButton").addEventListener("click", function()
-	{
-		submitStudent("view_student.html");
-	});
-	
-	document.getElementById("editStudentButton").addEventListener("click", function() 
-	{
-		submitStudent("edit_student.html");
-	});
-	
-	document.getElementById("viewInteractionButton").addEventListener("click", function()
-	{
-		submitStudent("select_interaction.html");
-	});
-	
-	document.getElementById("editInteractionButton").addEventListener("click", function() 
-	{
-		submitStudent("select_interaction.html");
-	});
-	
-	document.getElementById("addInteractionButton").addEventListener("click", function() 
-	{
-		submitStudent("select_interaction.html");
-	});
-	
-	document.getElementById("searchButton").addEventListener("click", function() 
-	{
-		waitOnClick(document.getElementById("searchButton"));
-		searchStudents();
-	});
- }
- 
- function waitOnClick(button)
- /* 
-	This function adds a 0.5 second timer onto a button so that it can't be double clicked, as this causes results for search button to be displayed twice
- */
- {
-	 button.disabled = true;
-	 setTimeout(function()
-	 {
-		 button.disabled = false;
-	 }, 500);
-	 
- }
- 
  function searchStudents()
  /*
   *  Takes user-entered criteria, searches student sheet, and returns data.
-  *  
+  *  Also 
   */
  {
 	//gapi search functionality here
@@ -128,8 +117,9 @@ var submitID;
 	//get results of content check
 	if(boolID || boolFirst || boolLast || boolEmail)
 	{
-		//count populated criteria
+		//count entered criteria
 		var numCriteria = [boolEmail, boolFirst, boolID, boolLast].filter(Boolean).length;
+		
 		//remove any previous err message
 		clearFeedback();
 		//grab table so that we may display the results
@@ -142,37 +132,37 @@ var submitID;
 		let conditions = [numCriteria];
 		var critIndex = 0;
 		
-		// if a criteria has been given, add it to the conditions
+		if (boolID)
+		{
+			conditions[critIndex] = {"header":"STUDENT_ID", "value":"" + document.getElementById('idNumberField').value};
+			critIndex++;
+		}
+		
 		if (boolFirst)
 		{		
-			conditions[critIndex] = {"header":"FIRST_NAME", "value":document.getElementById('firstNameField').value};
+			conditions[critIndex] = {"header":"FIRST_NAME", "value":"" + document.getElementById('firstNameField').value};
 			critIndex++;		
 		}
 		
 		if (boolLast)
 		{		
-			conditions[critIndex] = {"header":"LAST_NAME", "value":document.getElementById('lastNameField').value};
+			conditions[critIndex] = {"header":"LAST_NAME", "value":"" + document.getElementById('lastNameField').value};
 			critIndex++;		
 		}
 		
 		if (boolEmail)
-		{	
-			conditions[critIndex] = {"header":"EMAIL", "value":document.getElementById('emailField').value};
+		{		
+			conditions[critIndex] = {"header":"EMAIL", "value":"" + document.getElementById('emailField').value};
 			critIndex++;		
 		}
-		
-		if (boolID)
-		{
-			conditions[critIndex] = {"header":"STUDENT_ID", "value":document.getElementById('idNumberField').value};
-			critIndex++;
-		}
+		//start building results table
+		var tableData = "<table border=\"1\"><tr><th>Select</th><th>Student ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Year of Study</th></tr>"
 		
 		//submit a search with criteria
 		/*
 		 *
-		 * This GAPI search part needs some review-
-		 * some searches give back incorrect results
-		 * 
+		 * This GAPI search part needs some review- testing has revealed that the entries are case sensitive
+		 * and some searches give back incorrect results
 		 *
 		 */
 		sa.getSheet("UPLS").then(res =>
@@ -180,7 +170,7 @@ var submitID;
 			let result = sa.selectFromTableWhereConditions(res, ["STUDENT_ID","FIRST_NAME","LAST_NAME","EMAIL", "YOS"], conditions, 1).slice(1);
 			
 			//if no results, tell user
-			if(result.values.length < 1)
+			if(result.length < 1)
 			{
 				feedback("There are no matches for this entry.");
 				//end execution of function 
@@ -201,18 +191,6 @@ var submitID;
 				//format received data into table here
 				//table format is:
 				// | Select (Btn) | STUDENT_ID | FIRST_NAME | LAST_NAME | EMAIL | YOS |
-				
-				//make sure we're not returning the header row
-				if (result[i][0] === "STUDENT_ID")
-				{
-					//if header row is the only result, make sure the user knows there were no valid results
-					if (result.length === 1)
-					{
-						feedback("There are no matches for this entry.");
-					}
-					continue;
-				}
-				
 				//create new row for every student
 				var row = studentTable.insertRow(-1);
 						
@@ -232,7 +210,7 @@ var submitID;
 				});
 				
 				//add text
-				selectButton.appendChild(document.createTextNode("Select"));				
+				selectButton.appendChild(document.createTextNode("XXXX"));				
 				
 				//add values to cells
 				selectCell.appendChild(selectButton);
