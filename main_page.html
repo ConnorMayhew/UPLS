@@ -1,59 +1,53 @@
 <!--
 This file will provide the backbone for the main page.
+Last edit 2019/19/03 by Connor Mayhew
 -->
 <html>
   <head>
 	<title>Main Page</title>
 	<link rel="stylesheet" type="text/css" href="css/upls_styles.css">
-	<script src="js/main_menu.js"></script>
 	<script src="https://apis.google.com/js/api.js"></script>
 	<script src="js/SheetsApi.js"></script>
+	<script src="js/main_menu.js"></script>
 	<script src="js/main_page.js"></script>
 	
   </head>
   
   <body>
 	<center>
-				
-		<div>
-		<img src="assets/placeholderlogo.png" alt="Logo for UPLP." class="main_logo">
-		<br>
-		
-		<button id="emailButton" class="large_button">Group Email</button>
-		<br>
-		
-		<button id="addStudentButton" class="large_button">Add Student</button>	
-		<br>
-		
-		<button id="viewStudentButton" class="large_button">View Student</button>
-		<br>
-		
-		<button id="editStudentButton" class="large_button">Edit Student</button>
-		<br>
-		
-		<button id="addInteractionButton" class="large_button">Add Interaction</button>
-		<br>
-		
-		<button id="viewInteractionButton" class="large_button">View Interaction</button>
-		<br>
-		
-		<button id="editInteractionButton" class="large_button">Edit Interaction</button>
-		<br>
-		
-	    <button onclick="dropdown()" id="dropdown"  class="large_button admin">Admin Menu</button>
+		<div class = "title">
+			<img src="assets/placeholderlogo.png">
+		</div>
+		<div class = "column_side">
 		</div>
 		
-	    <div id="dropdown_items" class="dropdown_items">
-			<br>
-			
-			<button id="ingestButton" class="large_button admin">Batch Ingest</button>
-			<br>
-			
-			<button id="intCategoryButton" class="large_button admin">Interaction Categories</button>
-			<br>
-			
-			<button id="studentCategoryButton" class="large_button admin">Student Categories</button>
-	
+		<div class = "column_main">
+			<table width = "500px" cellpadding = "6px">
+				<tr>
+				</tr>
+				<tr>
+					<td valign = "top">	
+						<button id="emailButton" class="large_button">Group Email</button><br class="small">
+						<button id="addStudentButton" class="large_button">Add Student</button><br>
+						<button id="viewStudentButton" class="large_button">View Student</button><br>
+						<button id="editStudentButton" class="large_button">Edit Student</button><br>
+						<button id="addInteractionButton" class="large_button">Add Interaction</button><br>
+						<button id="viewInteractionButton" class="large_button">View Interaction</button><br>
+						<button id="editInteractionButton" class="large_button">Edit Interaction</button><br>
+					</td>
+						
+					<td valign = "top">
+						<button id="adminShowButton" class="large_button admin">Admin Menu</button><br>
+						<button id="ingestButton" class="large_button admin hide">Batch Ingest</button><br>
+						<button id="intTypeButton" class="large_button admin hide">Edit Interaction Types</button><br>
+						<button id="comChannelButton" class="large_button admin hide">Edit Communication Channels</button><br>
+						<button id="studentCategoryButton" class="large_button admin hide">Student Categories</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class = "column_side">
 		</div>
 	</center>
 	<script>

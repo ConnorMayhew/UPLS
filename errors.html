@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Batch Errors</title>
+    <script src="js/SheetsApi.js"></script>
+    <script src="js/main_menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
+
+
+
+</head>
+<body onload="mainMenu()">
+<div class="main_menu" id="main_menu"></div>
+<h1 align = "center">Batch Errors</h1>
+<script language="JavaScript">
+    var errors = [];
+    errors = JSON.parse(window.localStorage.getItem("errors"));
+    console.log(errors);
+
+    function createTable(tableData) {
+        var table = document.createElement('table');
+        table.style.border = "solid";
+        var row = {};
+        var cell = {};
+
+        tableData.forEach(function(rowData) {
+            row = table.insertRow(-1);
+            rowData.forEach(function(cellData) {
+                cell = row.insertCell();
+                cell.textContent = cellData;
+                cell.style.border = "solid";
+            });
+        });
+        document.body.appendChild(table);
+    }
+
+    createTable(errors);
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -28,7 +28,7 @@ After successfully created the OAuth 2.0 client ID, please get into the client I
 ## Functions
 |Function name                 |Return type|Parameters                                      |Description   | 
 |------------------------------|-----------|------------------------------------------------|--------------|
-|setKeys(inputSheetId, inputApiKey, inputClientId)|N/A|inputSheetId: the target sheet id<br>inputApiKey: The ApiKey of the application<br>inputClientId: The Client Id of the application|This function initialize the sheets api object created|
+|setKeys(inputSheetId, inputApiKey, inputClientId)|N/A|inputSheetId: the target sheet id<br>inputApiKey: The ApiKey of the application<br>inputClientId: The Client Id of the application|This function initialize the sheets api object created.|
 |handleClientLoad()	           |void       |N/A.	                                            |This is the function to load the gapi. Should be called after created the SheetsApi instance.|
 |handleSignInClick(event)	     |void	     |event (can be ignored).	                        |This is the function to handle the user’s sign in operation.|
 |handleSignOutClick(event)	   |void	     |event (can be ignored).	                        |This is the function to handle the user’s sign out operation.|
@@ -46,11 +46,17 @@ After successfully created the OAuth 2.0 client ID, please get into the client I
 |getCharFromNum(num)|String|num: the number or index. Starting from 0.|This function takes the number and return a corresponding capital character.|
 |arrayToObjects|Object[]|array: A 2D array with the headers in the first row.|This function takes a 2D array including headers and returns an array of objects.|
 |insertIntoTableColValues(headers, sheetName, toInsert)|Promise|headers: an array of the headers of the target sheet.<br>sheetName: the target sheet name.<br>toInsert: this is an array of objects with format [{header1:"value1", header2:"value2"}, {...},...,{...}].|This function does things like the sql sentence 'insert into sheetName values(toInsert)'.|
-|parseInsert(resposne)|int|response: the response from insert...|This function takes the reponse of insert... and returns the number of rows updated|
-|batchUpdateTable(sheetValues, sheetName, colVal, conditions)|Promise|sheetValues: the whole set of values of the target sheet, including the headers.<br>sheetName: the target sheet name.<br>colVal: an object of value to be updated with format {header: "value"}.<br>conditions: an array of conditions. Each condition is an object with format: {header:"the name of a header", value:"the value to check for"}.|This function does things like the sql sentence 'update sheetName set colVal where conditions'|
+|parseInsert(resposne)|int|response: the response from insert...|This function takes the reponse of insert... and returns the number of rows updated.|
+|batchUpdateTable(sheetValues, sheetName, colVal, conditions)|Promise|sheetValues: the whole set of values of the target sheet, including the headers.<br>sheetName: the target sheet name.<br>colVal: an object of value to be updated with format {header: "value"}.<br>conditions: an array of conditions. Each condition is an object with format: {header:"the name of a header", value:"the value to check for"}.|This function does things like the sql sentence 'update sheetName set colVal where conditions'.|
 |parseBatchUpdate(response)|int|response: the response of batchUpdateTable.|This function takes the response of batchUpdateTable and return the updated row number.|
 |alterTableAddCol(sheetName, colNames, headersLength)|Promise|sheetName: the target sheet name.<br>colNames： an array of inpu column names.<br>headersLength: the length of current headers.|This functio nwill return a promise to add the columns to the target sheet.|
 |parseAlter(response)|int|resposne: the response from alterTableAddCol.|This function will parse the response from talterTableAddCol and return the updated columns.|
+|getDraftBySubject(subject)|Promise|subject: the subject line.|This function returns a promise to get the draft(s) by subject line.|
+|parseDraftBySubject(response)|String[] or Promise or null|response: the response from getDraftBySubject.|This function parses the response from getDraftBySubject and returns a list of drafts, a promise to get the specific draft, or null if no drafts found.|
+|decode(str)|String|str: the base64URL encoded string.|This function decodes a base64URL encoded string and returns the result.|
+|sendEmail(message)|Promise|message: the base64URL encoded message of the email.|This function returns a promise to send a email.|
+|replaceVar(message, variables, index)|String|message: the email message contains the variables.<br>variables: an object of variables and corresponding values, in the format {variable1: [value1, value2, ...], variable2: ...}.<br>index: the index of value to use.|This function replace the variables in the message with corresponding values and returns the final message.|
+|addAddress(message, address)|String|message: the email message.<br>address: the destination email address.|This function adds the destination email address to the message.|
 
 #### One function to implement
 This function is called when the gapi is ready. In other words, when the handleClientLoad() is finished, it will automatically call the updateSignInStatus(isSignedIn) function.

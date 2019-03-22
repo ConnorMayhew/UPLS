@@ -1,0 +1,70 @@
+<!--
+This file will provide the backbone for adding an interaction for a single student.
+-->
+<html>
+  <head></head>
+  <title>Add Student Interaction</title>
+  <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="js/SheetsApi.js"></script>
+  <script src="js/add_student_interaction.js"></script>
+  <script src="js/main_menu.js"></script>
+  </head>
+  <body onload="mainMenu()">
+    <div class="main_menu" id="main_menu"></div>
+    <center>
+      <a href="single_search.html"><button value="back" class="back_button"></button></a>
+      <h1 class="title">Add Student Interaction</h1>
+      <form>
+      <table>
+      <tr>
+        <td>Student:</td><td><span id="student_name"></span>, <span id="student_id"></span></td>
+        </tr>
+        <tr>
+        <td>Email:</td><td><span id="student_email"></span></td>
+        </tr>
+        <tr>
+        <td>Interaction Type:</td>
+        <td>
+        <select id="interaction_type" required>
+        <option>---</option>
+        </select>
+        </td>
+        </tr>
+        <tr>
+        <td>Interaction Date:</td><td><input type="date" id="interaction_date" required></td>
+        </tr>
+        <tr>
+        <td>Librarian Initiated?</td><td><input type="radio" name="librarian_initiated" value="yes" id="librarian_initiated_yes">Yes <input type="radio" name="librarian_initiated" value="no" id="librarian_initiated_no" checked>No
+        </td>
+        </tr>
+        <tr>
+        <td>Follow-up Interaction?</td><td><input type="radio" name="follow_up" value="yes" id="follow_up_yes">Yes <input type="radio" name="follow_up" value="no" id="follow_up_no" checked>No
+        </td>
+        </tr>
+        <tr>
+        <td>Time Spent (minutes):</td><td><input type="number" min="1" id="time_spent" required></td>
+        </tr>
+        <tr>
+        <td>Communication Channel:</td>
+        <td>
+        <select id="communication_channel" required>
+        <option>---</option>
+        </select>
+        </td>
+        </tr>
+        <tr>
+        <td>URL:</td><td><input type="url" id="url"></td>
+        </tr>
+        <tr>
+        <td>Notes:</td><td><textarea id="notes"></textarea></td>
+        </tr>
+        <tr>
+        <td><input type="button" value="Submit" class="small_button" onclick="interactionSubmit()"></td>
+        <td><a href="main_page.html"><input type="button" value="Cancel" class="small_button" formnovalidate="formnovalidate"></a></td>
+        </tr>
+      </table>
+      </form>
+    </center>
+  </body>
+</html>

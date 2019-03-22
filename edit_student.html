@@ -6,8 +6,36 @@ This file will provide the backbone for editing student info.
   <title>Edit Student</title>
   <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
   <script src="js/main_menu.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="js/SheetsApi.js"></script>
+    <script src="js/edit_student.js"></script>
+
+    <style>
+      div.ex0{
+        width: 500px;
+        height: 700px;
+        border: solid;
+        border-width: 1px;
+      }
+      div.ex1{
+        width:240px;
+        height: auto;
+        float: left;
+        border: solid;
+        border-width: 1px;
+      }
+      div.ex2{
+        width: 240px;
+        height:auto;
+        float: right;
+        border: solid;
+        border-width: 1px;
+      }
+    </style>
   </head>
-  <body onload="mainMenu()">
+  <h1 align = "center">Edit Student Info</h1>
+  <!--<script>window.onload=disp()</script>-->
     <div class="main_menu" id="main_menu"></div>
-  </body>
+  <div id="main" align="center"></div>
+
 </html>

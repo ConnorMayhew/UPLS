@@ -1,13 +1,103 @@
-<!--
-This file will provide the backbone for batch ingesting student info.
--->
-<html>
-  <head>
-  <title>Batch Ingest</title>
-  <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
-  <script src="js/main_menu.js"></script>
-  </head>
-  <body onload="mainMenu()">
-    <div class="main_menu" id="main_menu"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Batch Ingest</title>
+    <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
+    <script src="js/main_menu.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="js/SheetsApi.js"></script>
+    <script src="js/batch_ingest.js"></script>
+
+    <style>
+    div.ex1 {
+        width: 350px;
+        height: auto;
+        border-style: solid;
+        border-width: 1px;
+        margin: 0 auto;
+
+    }
+        input.ex2{
+            float: left;
+            margin-left: 60px;
+        }
+        .ex3{
+            float: left;
+        }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body onload="mainMenu()">
+<div class="main_menu" id="main_menu"></div>
+<h1 align = "center">Batch Ingest</h1>
+
+<form action="main_page.html">
+    <input type="submit" value="Back">
+</form>
+
+<!-- Trigger/Open The Modal -->
+
+<div align = "center" id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p align = "center">This file must be correctly formatted to enter data into the system. To review this format, please click Review</p>
+        <input type="button" id="Review" name="review" value="Review">
+        <input type="button" id="cancel" name="cancel" value="Cancel">
+    </div>
+</div>
+
+<div class="ex1" align = "center" id="message">
+    <button class="ex3" id="myBtn" onclick="getModal()">Help</button>
+
+    <input type="file" id="picker" name="picker" accept="text/tab-separated-values" onchange="openFile(event)"><br><br>
+    <input class = "ex2" type="submit" onclick="sendToSheet()">
+    <form action="main_page.html">
+        <input class="ex2" type="submit" value="Return to Main">
+    </form>
+    <output id="output"></output>
+</div>
+
+
+
+</body>
 </html>

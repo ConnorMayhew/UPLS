@@ -10,7 +10,7 @@
   <body onload="mainMenu()">
   <div class="main_menu" id="main_menu"></div>
   <div id="content">
-    <h1>UPLS Column List</h1>
+    <h1 class="title">UPLS Column List</h1>
     <table id="headers_table"></table>
   </div>
 
@@ -36,7 +36,7 @@
       <textarea id="new-vocabulary" class="vocabulary" placeholder="Enter list of acceptable values, separate by comma"></textarea><br>
       <br>
       <button onclick="addHeader()" class="button fl-lt">Add</button>
-      <button onclick="cancel()" class="button fl-rt">Cancel</button>
+      <button onclick="closeCard()" class="button fl-rt">Cancel</button>
     </div>
   </div>
 
@@ -48,9 +48,9 @@
       <p class="input-label">Category Data Type: </p>
     </div>
     <div class="fl-rt">
-      <div><input id="header-name" type="text" class="input-box"></div>
+      <div><input id="header-name" type="text" class="input-box" disabled></div>
       <div>
-        <select id="header-type" class="input-box" style="width:218px;">
+        <select id="header-type" class="input-box" style="width:218px;" disabled>
           <option>Number</option>
           <option>Text</option>
           <option>Date</option>
@@ -62,7 +62,7 @@
       <textarea id="vocabulary" class="vocabulary" placeholder="Enter list of acceptable values, separate by comma"></textarea><br>
       <br>
       <button onclick="editHeader()" class="button fl-lt">Submit</button>
-      <button onclick="cancel()" class="button fl-rt">Cancel</button>
+      <button onclick="closeCard()" class="button fl-rt">Cancel</button>
     </div>
   </div>
 

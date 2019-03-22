@@ -1,13 +1,63 @@
-<!--
-This file will provide the backbone for adding info for a single student.
--->
-<html>
-  <head>
-  <title>Add Student</title>
-  <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
-  <script src="js/main_menu.js"></script>
-  </head>
-  <body onload="mainMenu()">
-    <div class="main_menu" id="main_menu"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link rel="stylesheet" type="text/css" href="css/upls_styles.css">
+    <script src="js/main_menu.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="js/SheetsApi.js"></script>
+    <script src="js/view_interaction.js"></script>
+</head>
+
+<body onload="mainMenu()">
+<div class="main_menu" id="main_menu"></div>
+
+<!-- THIS SENDS TO STUDENT PAGE-->
+    <form action="student.html" name="addStudent">
+        Student ID:<br>
+        <input type="text" name="studentID"><br>
+        First Name:<br>
+        <input type="text" name="firstName"><br>
+        Last Name:<br>
+        <input type="text" name="lastName"><br>
+        Email:<br>
+        <input type="text" name="email"><br>
+        Program Status:<br>
+        <input type="text" name="progStatus"><br>
+        Program Code:<br>
+        <input type="text" name="progCode"><br>
+        Program Description:<br>
+        <input type="text" name="progDesc"><br>
+        Department Name:<br>
+        <input type="text" name="deptName"><br>
+        Department Code:<br>
+        <input type="text" name="deptCode"><br>
+        Division Code:<br>
+        <input type="text" name="divCode"><br>
+        Division Name:<br>
+        <input type="text" name="divName"><br>
+        Honors Code:<br>
+        <input type="text" name="honCode"><br>
+        Class Level:<br>
+        <input type="text" name="classLvl"><br>
+        Catalog Year:<br>
+        <input type="text" name="cataYear"><br>
+        Majors:<br>
+        <input type="text" name="majors"><br>
+        Main Major:<br>
+        <input type="text" name="main_major"><br>
+        Minor:<br>
+        <input type="text" name="minors"><br>
+        Frozen:<br>
+        <input type="text" name="frozen"><br><br>
+        <input name="submit" type="submit" value="Add Student"><br><br>
+
+
+    </form>
+    <form action="main_page.html">
+        <input type="submit" value="Return to Main">
+    </form>
+</body>
 </html>

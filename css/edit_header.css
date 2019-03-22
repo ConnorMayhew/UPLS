@@ -26,10 +26,10 @@ th, td {
 .card {
     position: absolute;
     top: calc(50vh - 393px);
-    left: calc(50vw - 223px);
+    left: calc(50vw - 260px);
     background-color: aliceblue;
-    width: 400px;
-    height: 422px;
+    width: 450px;
+    height: 450px;
     margin: 50px auto;
     border: solid 1px black;
     border-radius: 16px;

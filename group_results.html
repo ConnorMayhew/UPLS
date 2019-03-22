@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="Api.js"></script>
+</head>
+<body>
+<!-- THIS TAKES FROM ADD_STUDENT NEEDS METHOD TO SEND TO SHEET-->
+<Script language="JavaScript">
+    var columns = [];
+    var array = [];
+    let sa = new SheetsApi("1gNQpWqetXTtiyZIa9RiAiwpnJWNa6nTeQGZDcGAHWS0", "AIzaSyD5KpN_FCSGTRJGlDFN9CvXD3gyg-f8ZC4", "656316403501-g3io4mu5ibfebpls8jrnht04rg8g2mr1.apps.googleusercontent.com");
+    window.onload = sa.handleClientLoad();
+    let sheetHeaders;
+    let objectArray;
+
+    function getParams(){
+        var idx = document.URL.indexOf('?');
+        var params = [];
+        if (idx != -1) {
+            var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+            for (var i=0; i<pairs.length; i++){
+                nameVal = pairs[i].split('=');
+                params[nameVal[0]] = nameVal[1];
+            }
+        }
+        return params;
+    }
+    params = getParams();
+
+    columns[0] = unescape(params["progStatus"]);
+    columns[1] = unescape(params["progCode"]);
+    columns[2] = unescape(params["deptName"]);
+    columns[3] = unescape(params["divName"]);
+    columns[4] = unescape(params["honCode"]);
+    columns[5] = unescape(params["classLvl"]);
+    columns[6] = unescape(params["main_major"]);
+    columns[7] = unescape(params["minors"]);
+    console.log(columns);
+    array[0] = ["PROG_STATUS", "PROG_CODE", "DEPT_NAME", "DIV_NAME", "HON_CODE", "CLASS_LVL", "MAIN_MAJOR", "MINORS"];
+    array[1] = columns;
+    // sheetHeaders = array[0];
+    objectArray = arrayToObjects(array);
+
+    function viewResults() {
+        sa.getTableHeaders("Students").then(response => {
+            sheetHeaders = sa.parseTableHeaders(response);
+        });
+        sa.getSheet("Students").then(response => {
+            sa.parseSheetValues(response);
+            console.log(sa.selectFromTableWhereConditions(response, sheetHeaders, objectArray, 1));
+        });
+    }
+    function arrayToObjects(array) {
+        let headers = array[0];
+        let result = [];
+        let tempStr = "";
+        for (let i = 1; i < array.length; i++) {
+            tempStr = "{";
+            for (let j = 0; j< array[i].length; j++) {
+                tempStr += "\"" + headers[j] + "\":\"" + array[i][j] + "\"";
+                if (j < array[i].length - 1) {
+                    tempStr += ",";
+                }
+            }
+            tempStr += "}";
+            console.log(tempStr);
+            result[i-1] = JSON.parse(tempStr.replace(/\n/g, "\\n")
+                .replace(/\r/g, "\\r")
+                .replace(/\t/g, "\\t")
+                .replace(/\f/g, "\\f"));
+        }
+        return result;
+    }
+
+    //Function to display student information for review
+    function dispStudent(){
+        for (let i = 0; i < array[0].length; i++) {
+            document.writeln("<pre>");
+            document.write(sheetHeaders[i] + ": ");
+            document.write(columns[i]);
+        }
+    }
+
+</Script>
+<H1>Search Results</H1>
+<!--<script>dispStudent()</script><br>-->
+
+<form action="index.html"><input align = "left" type="submit" value="Return to Main"></form>
+<input type = "button" id="view" value="View Results" onclick="viewResults()">
+</body>
+</html>

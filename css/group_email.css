@@ -1,0 +1,50 @@
+h1 {
+    width: 565px;
+    margin: auto;
+}
+
+td {
+    width:80px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.small_btn {
+    margin-top: 8px;
+}
+
+#main_menu {
+    margin-bottom: 16px;
+}
+
+#back {
+    margin-top: 4px;
+}
+
+#content {
+    width: 600px;
+    margin: auto;
+}
+
+#number_label {
+    width: fit-content;
+    margin: auto;
+    font-size: 1.3em;
+
+}
+
+#operations {
+    margin-top: 196px;
+    margin-right: 150px;
+    padding-top: 8px;
+    width: 100px;
+    position: relative;
+    left: 125px;
+    top: -208px;
+}
+
+#criteria {
+    padding: 16px;
+}
