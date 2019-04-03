@@ -6,10 +6,10 @@
  * @constructor
  */
 function SheetsApi() {
-    let sheetId = "";
-    let API_KEY = "";
-    let CLIENT_ID = "";
-    let librarian = "";
+    let sheetId = "1rHtqoojacLBP04ORXCqbaoUhR_NosD2yTM96VY8IfZs";
+    let API_KEY = "AIzaSyDlixYVvfBwTtRzQGVLiaXmpsAK-jCQeIo";
+    let CLIENT_ID = "528562284003-s86pk6cog2gd4nkbn3ldlvjqkkldqg9c.apps.googleusercontent.com";
+    let librarian = "Unknown";
     let admin = "Unknown";
 
     /** Public

@@ -54,7 +54,12 @@ var submitID;
 	
 	document.getElementById("searchButton").addEventListener("click", function() 
 	{
+		//disable to ensure double clicking doesn't submit search twice
+		document.getElementById("searchButton").disabled = true;
 		searchStudents();
+		setTimeout(function() {
+			document.getElementById("searchButton").disabled = false;
+		}, 500);
 	});
  }
   
@@ -86,7 +91,7 @@ var submitID;
 		 break;
 		 
 		 default: 
-		 alert("Unrecognized function code " + code + " from main page. Redirecting you back to main page. Please try again.");
+		 alert("Unrecognized function code " + code + " from previous page. Redirecting you to main page. Please try again.");
 		 window.location.href = "main_page.html";
 	 }
  } 
@@ -205,7 +210,7 @@ var submitID;
 				});
 				
 				//add text
-				selectButton.appendChild(document.createTextNode("XXXX"));				
+				selectButton.appendChild(document.createTextNode("Select"));				
 				
 				//add values to cells
 				selectCell.appendChild(selectButton);
@@ -225,13 +230,13 @@ var submitID;
  function clearFeedback()
  {
 	 document.getElementById("feedBackMessage").innerHTML = "";
-	 document.getElementById("feedBackMessage").classList.toggle("invisible", true);
+	 document.getElementById("feedBackMessage").classList.toggle("hide", true);
  }
  
  function feedback(message)
  {
 	 document.getElementById("feedBackMessage").innerHTML = message;
-	 document.getElementById("feedBackMessage").classList.toggle("invisible", false);
+	 document.getElementById("feedBackMessage").classList.toggle("hide", false);
  }
  
  function clearTable(table)

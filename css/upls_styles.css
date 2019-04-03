@@ -19,6 +19,8 @@ h1.title{
 	text-align: center;
 	font-size: 5em;
 	font-family: simplifica, arial, sans-serif;
+	padding: 0px;
+	margin: 10px;
 }
 
 img{
@@ -29,9 +31,8 @@ img{
 div.title{
 	width:100%;
 	height: 100px;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	float: left;
+	position: relative;
 }
 
 div.menu_bar{
@@ -39,8 +40,45 @@ div.menu_bar{
 	height: 20px;
 	float: left;
 	overflow-y: visible;
+	position: relative;
+	z-index: 99999;
 }
 
+div.column_30 {
+	width: 30%;
+	float: left;
+	min-width: 200px;
+	position: relativd;
+}
+
+div.column_half {
+	width: 50%;
+	float: left;
+	position: relative;
+}
+
+div.column_70 {
+	width: 70%;
+	float: left;
+	min-width: 500px;
+	position: relative;
+}
+
+div.column_side {
+	float: left;
+	width: 15%;
+	min-height: 200px;
+	position: relative;
+}
+
+div.column_main {
+	float: left;
+	width: 70%;
+	min-height: 200px;
+	min-width: 700px;
+	position: relative;
+}
+ 
 button.hide {
 	display: none;
 }
@@ -48,6 +86,7 @@ button.hide {
 button.unavailable {
 	opacity: 0.6;
 	cursor: not-allowed;
+	title: 
 }
 
 .main_logo{
@@ -86,14 +125,15 @@ button.back_button {
 	background-size:cover;
 	height: 3em;
 	width: 3em;
-	padding: 0.5em;
+	margin-right: 2em;
+	float: right;
 }
 
-button.back_button:hover {
+.back_button:hover {
 	background-image: url("images/backbuttoninvertedbg.png");
 }
 
-button.close_button {
+.close_button {
 	border: none;
 	background-color: F3E7D3;
 	background-image: url("images/xbuttonbg.png");
@@ -103,11 +143,11 @@ button.close_button {
 	padding: 0.2em;
 }
 
-button.close_button:hover {
+.close_button:hover {
 	background-image: url("images/xbuttoninvertedbg.png");
 }
 
-button.small_button {
+.small_button {
 	background-color: #789D4A;
 	border: none;
 	text-align: center;
@@ -117,7 +157,7 @@ button.small_button {
 	min-width: 12.5em;
 }
 
-button.small_button:hover {
+.small_button:hover {
 	Background-color: #FFFFFF;
 	color: #000000;
 	border-style: solid;
@@ -125,12 +165,12 @@ button.small_button:hover {
 	border-color: #789D4A;
 }
 
-button.small_button.admin{
+.small_button.admin{
 	background-color: #F1B434;
 	display: block
 }
 
-button.small_button.admin:hover {
+.small_button.admin:hover {
 	Background-color: #FFFFFF;
 	color: #000000;
 	border-style: solid;
@@ -138,28 +178,28 @@ button.small_button.admin:hover {
 	border-color: #F1B434;
 }
 
-button.small_button.menu_bar {
+.small_button.menu_bar {
 	display: inline-block;
 	border: 1px solid black;
 	border-right: none;
 }
 
-button.small_button.menu_bar:last-child {
+.small_button.menu_bar:last-child {
 	border-right: 1px solid black;
 }
 
-button.small_button.menu_bar.admin {
+.small_button.menu_bar.admin {
 	display: block;
 	border: 1px solid black;
 	border-top: none;
 }
 
-button.small_button.menu_bar.admin:first-child {
+.small_button.menu_bar.admin:first-child {
 	border-top: 1px solid black;
 	border-left: none;
 }
 
-button.medium_button {
+.medium_button {
 	background-color: #789D4A;
 	border: none;
 	text-align: center;
@@ -170,7 +210,7 @@ button.medium_button {
 	padding: 3px;
 }
 
-button.medium_button:hover {
+.medium_button:hover {
 	Background-color: #FFFFFF;
 	color: #000000;
 	border-style: solid;
@@ -178,7 +218,7 @@ button.medium_button:hover {
 	border-color: #789D4A;
 }
 
-button.large_button {
+.large_button {
 	border:none;
 	cursor: pointer;
 	display: block;
@@ -189,7 +229,7 @@ button.large_button {
 	height: 5em;
 }
 
-button.large_button:hover {
+.large_button:hover {
 	Background-color: #FFFFFF;
 	color: #000000;
 	border-style: solid;
@@ -197,11 +237,11 @@ button.large_button:hover {
 	border-color: #789D4A;
 }
 
-button.large_button.admin {
+.large_button.admin {
 	background-color: #F1B434;
 }
 
-button.large_button.admin:hover {
+.large_button.admin:hover {
 	Background-color: #FFFFFF;
 	color: #000000;
 	border-style: solid;
@@ -223,34 +263,6 @@ button.large_button.admin:hover {
 	display: inline;
 }
 
-.column_30 {
-	width: 30%;
-	float: left;
-	min-width: 200px;
-}
-
-.column_half {
-	width: 50%;
-	float: left;
-}
-
-.column_70 {
-	width: 70%;
-	float: left;
-	min-width: 500px;
-}
-.column_side {
-	float: left;
-	width: 15%;
-	min-height: 200px;
-}
-
-.column_main {
-	float: left;
-	width: 70%;
-	min-height: 200px;
-	min-width: 700px;
-}
 
 .row{
 	max-height: 500px;
@@ -267,4 +279,3 @@ p {
 	font-size: 1.25em;
 	font-family: serif;
 }
-
